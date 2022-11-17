@@ -1,7 +1,7 @@
 import { GroupModel } from "../group.model.js"
 
 export const groupList = async(req, res) => {
-    const groups = await GroupModel.find({})
+    const groups = await GroupModel.find({}).populate(["ownerId", "users"])
     return res.json({
         totalCount:groups.length,
         list:groups

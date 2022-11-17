@@ -1,9 +1,6 @@
 import { UserModel } from "../user.model.js"
 
 export const userUpdate = async(req, res) => {
-    await UserModel.findByIdAndUpdate(req.params.id)
-    
-    const userData = new UserModel(req.params)
-    await userData.update()
-    return res.json({message:"User removed successfully"})
+    const updatedUser = await UserModel.findByIdAndUpdate({_id:req.params.id}, {...req.body}, {new:true})
+    return res.json(updatedUser)
 }

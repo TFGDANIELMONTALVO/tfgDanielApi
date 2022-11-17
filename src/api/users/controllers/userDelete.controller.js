@@ -1,6 +1,6 @@
 import { UserModel } from "../user.model.js"
 
 export const userDelete = async(req, res) => {
-    await UserModel.deleteOne(req.params.id)
+    await UserModel.deleteOne({_id:req.params.id})
     return res.json({message:"User removed successfully"})
 }

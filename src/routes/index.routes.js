@@ -6,6 +6,9 @@ import { groupCreate } from "../api/groups/controllers/groupCreate.controller.js
 import { groupList } from "../api/groups/controllers/groupList.controller.js";
 import { userDelete } from "../api/users/controllers/userDelete.controller.js";
 import { userUpdate } from "../api/users/controllers/userUpdate.controller.js";
+import { groupDelete } from "../api/groups/controllers/groupDelete.controller.js";
+import { groupUpdate } from "../api/groups/controllers/groupUpdate.controller.js";
+
 
 const router = Router();
 
@@ -13,8 +16,11 @@ router.get("/", health);
 router.get("/users", userList);
 router.post("/users", userCreate);
 router.put("/users/update/:id", userUpdate);
-router.delete("/users/delete/:userId", userDelete);
+router.delete("/users/delete/:id", userDelete);
 router.post("/groups", groupCreate);
 router.get("/groups", groupList);
+router.put("/groups/update/:id", groupUpdate);
+router.delete("/groups/delete/:id", groupDelete);
+//groups/join/:groupId
 
 export default router;
