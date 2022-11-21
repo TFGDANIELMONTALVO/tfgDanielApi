@@ -1,6 +1,10 @@
-import { UserModel } from "../user.model.js"
+import { UserModel } from "../user.model.js";
 
-export const userDelete = async(req, res) => {
-    await UserModel.deleteOne({_id:req.params.id})
-    return res.json({message:"User removed successfully"})
-}
+export const userDelete = async (req, res) => {
+  try {
+    await UserModel.deleteOne({ _id: req.params.id });
+    return res.json({ message: "User removed successfully" });
+  } catch (error) {
+    return res.status(400).json({ message: "Error" });
+  }
+};

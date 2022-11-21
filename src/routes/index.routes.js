@@ -8,6 +8,11 @@ import { userDelete } from "../api/users/controllers/userDelete.controller.js";
 import { userUpdate } from "../api/users/controllers/userUpdate.controller.js";
 import { groupDelete } from "../api/groups/controllers/groupDelete.controller.js";
 import { groupUpdate } from "../api/groups/controllers/groupUpdate.controller.js";
+import { joinGroup } from "../api/groups/controllers/joinGroup.controller.js";
+import { paymentList } from "../api/payments/controllers/paymentList.controller.js";
+import { paymentCreate } from "../api/payments/controllers/paymentCreate.controller.js";
+import { paymentUpdate } from "../api/payments/controllers/paymentUpdate.controller.js";
+import { paymentDelete } from "../api/payments/controllers/paymentDelete.controller.js";
 
 
 const router = Router();
@@ -21,6 +26,10 @@ router.post("/groups", groupCreate);
 router.get("/groups", groupList);
 router.put("/groups/update/:id", groupUpdate);
 router.delete("/groups/delete/:id", groupDelete);
-//groups/join/:groupId
+router.put("/groups/join/:groupId", joinGroup);
+router.get("/payments", paymentList);
+router.post("/payments", paymentCreate);
+router.put("/payments/update/:id", paymentUpdate);
+router.delete("/payments/delete/:id", paymentDelete);
 
 export default router;
