@@ -13,6 +13,7 @@ import { paymentList } from "../api/payments/controllers/paymentList.controller.
 import { paymentCreate } from "../api/payments/controllers/paymentCreate.controller.js";
 import { paymentUpdate } from "../api/payments/controllers/paymentUpdate.controller.js";
 import { paymentDelete } from "../api/payments/controllers/paymentDelete.controller.js";
+import { joinGroupDelete } from "../api/groups/controllers/joinGroupDelete.controller.js";
 
 
 const router = Router();
@@ -27,6 +28,7 @@ router.get("/groups", groupList);
 router.put("/groups/update/:id", groupUpdate);
 router.delete("/groups/delete/:id", groupDelete);
 router.put("/groups/join/:groupId", joinGroup);
+router.put("/groups/deleteJoinedUser/:groupId", joinGroupDelete);
 router.get("/payments", paymentList);
 router.post("/payments", paymentCreate);
 router.put("/payments/update/:id", paymentUpdate);
