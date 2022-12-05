@@ -8,7 +8,8 @@ const schemaGroup = new Schema({
     price:{type:Number, required:true},
     numOfUsers:{type:Number, required:true},
     users:[{type:Schema.Types.ObjectId, ref:"users"}],
-    payments:[{type:Schema.Types.ObjectId, ref:"payments"}]
+    payments:[{type:Schema.Types.ObjectId, ref:"payments"}],
+    createdAt:{type:Date, default:Date.now}
 });
 
 export const GroupModel = model('groups', schemaGroup);
