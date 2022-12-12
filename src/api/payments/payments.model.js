@@ -1,13 +1,12 @@
 import { Schema, model } from "mongoose";
 
 const schemaPayments = new Schema({
-    groupId:[{type:Schema.Types.ObjectId, ref:"groups"}],
-    userId:[{type:Schema.Types.ObjectId, ref:"users"}],
-    cardNumber:{type:Number, required:true},
-    expirationDate:{type:Date, required:true},
-    cvv:{type:Number, required:true},
-    status:{type:String},
-    quantity:{type:String}
+    groupId:{type:Schema.Types.ObjectId, ref:"groups", required: true},
+    emiterUserId:{type:Schema.Types.ObjectId, ref:"users", required: true},
+    recivedUserId:{type:Schema.Types.ObjectId, ref:"users", required: true},
+    status: {type:String, enum: ["Completed", "Pending"], required: true},
+    quantity:{type:Number, required: true},
+    createdAt:{type:Date, default:Date.now}
 });
 
 export const PaymentsModel = model('payments', schemaPayments);

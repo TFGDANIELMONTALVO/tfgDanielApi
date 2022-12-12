@@ -16,6 +16,8 @@ import { paymentDelete } from "../api/payments/controllers/paymentDelete.control
 import { joinGroupDelete } from "../api/groups/controllers/joinGroupDelete.controller.js";
 import { userLogin } from "../api/users/controllers/userLogin.controller.js";
 import { groupById } from "../api/groups/controllers/groupById.controller.js";
+import { userById } from "../api/users/controllers/userById.controller.js";
+import { getPaymentsByOwnerId } from "../api/payments/controllers/getPaymentsByOwnerId.controller.js";
 
 
 const router = Router();
@@ -23,19 +25,21 @@ const router = Router();
 router.get("/", health);
 router.get("/users", userList);
 router.post("/users", userCreate);
-router.put("/users/update/:id", userUpdate);
-router.delete("/users/delete/:id", userDelete);
 router.post("/groups", groupCreate);
 router.get("/groups", groupList);
+router.get("/payments", paymentList);
+router.post("/payments", paymentCreate);
+router.post("/users/login", userLogin);
+router.get("/payments/:id", getPaymentsByOwnerId)
+router.get("/user/:id", userById);
 router.get("/groups/:id", groupById);
+router.put("/users/update/:id", userUpdate);
+router.delete("/users/delete/:id", userDelete);
 router.put("/groups/update/:id", groupUpdate);
 router.delete("/groups/delete/:id", groupDelete);
 router.put("/groups/join/:groupId", joinGroup);
 router.put("/groups/deleteJoinedUser/:groupId", joinGroupDelete);
-router.get("/payments", paymentList);
-router.post("/payments", paymentCreate);
 router.put("/payments/update/:id", paymentUpdate);
 router.delete("/payments/delete/:id", paymentDelete);
-router.post("/users/login", userLogin);
 
 export default router;

@@ -3,11 +3,11 @@ import { GroupModel } from "../group.model.js";
 
 export const groupCreate = async (req, res) => {
   try {
-    const user = await UserModel.findById(req.body.ownerId).populate("ownerGroups")
-
-    if(user && user.ownerGroups.some((group) => group.category.toString() === req.body.category)){
-      return res.json({message: "Grupo con categoría ya creada"})
-    }
+    
+    //const user = await UserModel.findById(req.body.ownerId).populate("ownerGroups")
+    // if(user && user.ownerGroups.some((group) => group.category.toString() === req.body.category)){
+    //   return res.status(400).json({message: "Grupo con categoría ya creada"})
+    // }
 
     const group = new GroupModel(req.body);
 
