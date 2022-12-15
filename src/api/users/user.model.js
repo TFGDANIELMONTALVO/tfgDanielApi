@@ -8,7 +8,8 @@ const schemaUser = new Schema({
     password:{type:String},
     ownerGroups:[{type:Schema.Types.ObjectId, ref:"groups"}],
     suscribedGroups:[{type:Schema.Types.ObjectId, ref:"groups"}],
-    createdAt:{type:Date, default:Date.now}
+    createdAt:{type:Date, default:Date.now},
+    deleteAt:{type:Date, default:null}
 });
 
 export const UserModel = model('users', schemaUser);

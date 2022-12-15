@@ -13,7 +13,6 @@ export const getPaymentsByOwnerId = async (req, res) => {
         const today = new Date()
 
         let completedPayments = []
-
         let pendingPayments = []
 
         let totalAmountCompleted = 0
@@ -26,6 +25,7 @@ export const getPaymentsByOwnerId = async (req, res) => {
                 if (differenceInDays(today, payment.createdAt)<30) {
                     if (payment.status === "Completed") {
                         await PaymentsModel.populate(payment, {path: "groupId"})
+                        await PaymentsModel.populate(payment, {path: "emiterUserId"})
                         completedPayments.push(payment)
                         totalAmountCompleted+=payment.quantity
                     }
@@ -43,13 +43,13 @@ export const getPaymentsByOwnerId = async (req, res) => {
         const paymentsPendingByGroup = _.groupBy(pendingPayments, "groupId._id")
 
 
-        
-
         return res.status(200).json({
             totalAmountCompleted, 
             totalAmountPending, 
             completedPayments:paymentsCompletedByGroup, 
-            pendingPayments: paymentsPendingByGroup})
+            pendingPayments: paymentsPendingByGroup
+        })
+
     } catch (error) {
         console.log(error)
     }

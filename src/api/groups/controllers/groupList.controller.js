@@ -6,6 +6,7 @@ export const groupList = async (req, res) => {
       req.query.category = "Disney+"
     }
     const query = {
+      deletedAt: null,
       ...(req.query.ownerId && {ownerId: {$ne:req.query.ownerId}}),
       ...(req.query.ownerId && {users: {$ne: [req.query.ownerId]}}),
       ...(req.query.category && {category: req.query.category})
