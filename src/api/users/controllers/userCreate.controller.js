@@ -17,14 +17,13 @@ export const userCreate = async (req, res) => {
     }
     const userData = new UserModel(req.body);
 
-    const password = userData.password
-    const hash = await bcrypt.hash(password, 10)
-    userData.password = hash
+    const password = userData.password;
+    const hash = await bcrypt.hash(password, 10);
+    userData.password = hash;
     await userData.save();
 
     return res.status(201).json(userData);
   } catch (error) {
-    console.log(error)
     return res.status(400).json({ message: "Error validate in fields" });
   }
 };

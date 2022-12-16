@@ -7,7 +7,7 @@ export const groupUpdate = async (req, res) => {
       { ...req.body },
       { new: true }
     );
-    return res.json(updatedGroup);
+    return res.status(200).json(updatedGroup);
   } catch (error) {
     return res.status(400).json({ message: "Error" });
   }

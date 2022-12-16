@@ -3,7 +3,6 @@ import { GroupModel } from "../group.model.js";
 
 export const groupDelete = async (req, res) => {
   try {
-    console.log(req.body)
     const group = await GroupModel.findOne({ _id: req.params.id }).populate(
       "users"
     );
@@ -20,20 +19,18 @@ export const groupDelete = async (req, res) => {
     group.deletedAt = new Date();
 
     await Promise.all([
-      group.users.map(async(user)=> {
+      group.users.map(async (user) => {
         await UserModel.findByIdAndUpdate(user._id, {
           suscribedGroups: [
-            ...user.suscribedGroups.filter((groupId) => groupId.toString() !== group._id.toString()
-          )]
-        })
-      }), 
+            ...user.suscribedGroups.filter(
+              (groupId) => groupId.toString() !== group._id.toString()
+            ),
+          ],
+        });
+      }),
       owner.save(),
-      group.save()
-    ])
-
-    
-
-
+      group.save(),
+    ]);
 
     return res.status(200).json({ message: "Group removed successfully" });
   } catch (error) {
